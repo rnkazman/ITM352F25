@@ -16,3 +16,23 @@ print(df_big_homes.head(10))
 
 # Look at the data types
 print(df_big_homes.info())
+
+# Convert columns to appropriate data types
+df_big_homes["sale_price"] = pd.to_numeric(df_big_homes["sale_price"], errors="coerce")
+df_big_homes["land_sqft"] = pd.to_numeric(df_big_homes["land_sqft"], errors="coerce")
+df_big_homes["gross_sqft"] = pd.to_numeric(df_big_homes["gross_sqft"], errors="coerce")
+
+# Drop rows with missing values
+df_big_homes = df_big_homes.dropna()
+# Drop duplicate rows
+df_big_homes = df_big_homes.drop_duplicates()
+
+# Print out the first 10 rows of the cleaned dataframe
+print("After dropping nulls and duplicates\n", df_big_homes.head(10))
+
+df_big_homes = df_big_homes[df_big_homes["sale_price"] > 0]
+print("After dropping 0 sales\n", df_big_homes.head(10))
+
+# Calculate the average sales price
+average_price = df_big_homes["sale_price"].mean()
+print(f"The average sales price of homes with 500 or more units is ${average_price:,.2f}.")
