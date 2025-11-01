@@ -98,8 +98,9 @@ def display_menu(sales_data):
         print(f"{i}. {description}")
 
     try:
-        choice = int(input("Selection an option {1- {}): ".format(len(menu_options))))
-        if 1 <= choice <= len(menu_options):
+        menu_len = len(menu_options)
+        choice = int(input("Select an option (1 to {}): ".format(menu_len)))
+        if 1 <= choice <= menu_len:
             action = menu_options[choice - 1][1]
             action(sales_data)
         else:
