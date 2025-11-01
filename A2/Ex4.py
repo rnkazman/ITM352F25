@@ -84,7 +84,12 @@ def exit_program(sales_data):
     exit(0)
 
 def show_employees_by_region(sales_data):
-    return
+    pivot_table = pd.pivot_table(sales_data, index='sales_region', values='employee_id', aggfunc=pd.Series.nunique)
+    pivot_table.columns = ['Number of Employees']  # Rename the colummn for readability
+    print("\nNumber of Employees by Region:")
+    print(pivot_table)
+    return pivot_table
+
 
 def display_menu(sales_data):
     menu_options = (
@@ -110,6 +115,7 @@ def display_menu(sales_data):
 
 url = "https://drive.google.com/uc?id=1ujY0WCcePdotG2xdbLyeECFW9lCJ4t-K"
 sales_data = load_csv(url)
+
 
 def main():
     # Main program loop
