@@ -84,7 +84,12 @@ def exit_program(sales_data):
     exit(0)
 
 def show_employees_by_region(sales_data):
-    return
+    pivot_table = pd.pivot_table(sales_data, index='sales_region', values='employee_id', aggfunc=pd.Series.nunique)
+    pivot_table.columns = ['Number of Employees']  # Rename the colummn for readability
+    print("\nNumber of Employees by Region:")
+    print(pivot_table)
+    return pivot_table
+
 
 def display_menu(sales_data):
     menu_options = (
@@ -98,8 +103,9 @@ def display_menu(sales_data):
         print(f"{i}. {description}")
 
     try:
-        choice = int(input("Selection an option {1- {}): ".format(len(menu_options))))
-        if 1 <= choice <= len(menu_options):
+        menu_len = len(menu_options)
+        choice = int(input("Select an option (1 to {}): ".format(menu_len)))
+        if 1 <= choice <= menu_len:
             action = menu_options[choice - 1][1]
             action(sales_data)
         else:
@@ -109,6 +115,7 @@ def display_menu(sales_data):
 
 url = "https://drive.google.com/uc?id=1ujY0WCcePdotG2xdbLyeECFW9lCJ4t-K"
 sales_data = load_csv(url)
+
 
 def main():
     # Main program loop
