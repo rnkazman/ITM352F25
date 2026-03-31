@@ -11,6 +11,8 @@ import time
 # Temporary fix.  Don't do this in production code.
 ssl._create_default_https_context = ssl._create_unverified_context
 pd.set_option('display.max_columns', None)
+# Uncomment line below to show all rows.  Be careful with large datasets!
+# pd.set_option('display.max_rows', None)
 pd.set_option('display.float_format', '{:.2f}'.format)
 
 
@@ -19,7 +21,6 @@ def load_csv(file_path):
     start_time = time.time()
     
     try:
-
         df = pd.read_csv(file_path, engine="pyarrow")
         end_time = time.time()
         load_time = end_time - start_time
