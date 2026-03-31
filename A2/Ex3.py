@@ -12,7 +12,7 @@ import time
 ssl._create_default_https_context = ssl._create_unverified_context
 pd.set_option('display.max_columns', None)
 # Uncomment line below to show all rows.  Be careful with large datasets!
-# pd.set_option('display.max_rows', None)
+pd.set_option('display.max_rows', None)
 pd.set_option('display.float_format', '{:.2f}'.format)
 
 
