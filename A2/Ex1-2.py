@@ -19,7 +19,6 @@ def load_csv(file_path):
     start_time = time.time()
     
     try:
-
         df = pd.read_csv(file_path, engine="pyarrow")
         end_time = time.time()
         load_time = end_time - start_time
