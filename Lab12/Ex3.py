@@ -1,15 +1,19 @@
 # Parse the UH Shilder ITM department page and extract names of faculty members
+import ssl
 import urllib.request
 from bs4 import BeautifulSoup
 
 itm_url = " https://shidler.hawaii.edu/itm/people"
+ssl._create_default_https_context = ssl._create_unverified_context
 
 itm_html = urllib.request.urlopen(itm_url)
 html_to_parse = BeautifulSoup(itm_html, "html.parser")
+#print(html_to_parse)    # Inspect the HTML to find the tags that contain the information we want
 
 pretty_html = html_to_parse.prettify()
 lines = pretty_html.splitlines()
 num_to_print = 10
+print("Pretty printing the first " + str(num_to_print) + " lines of the HTML:")
 
 # Print the first few lines of the prettified HTML
 for line in lines[:num_to_print]:
