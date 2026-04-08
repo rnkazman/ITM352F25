@@ -26,6 +26,7 @@ try:
                                  aggfunc=np.mean,
                                  margins=True, # Add a 'Total' column and row
                                  margins_name='Total Sales')
+    pivot_table = pivot_table.fillna(0)
     print(pivot_table)
 
 except Exception as e:

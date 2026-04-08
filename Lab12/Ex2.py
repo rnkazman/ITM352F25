@@ -1,9 +1,11 @@
 # Open a URL from the US Treasure and extract its information as a
 # Dataframe.  Print the 1 month treasury rate.
+import ssl
 import pandas as pd
 import urllib.request
 
-url = "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202410"
+url = "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202603"
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # Open the web page and save it as a DataFrame
 print("Opening URL:", url)
